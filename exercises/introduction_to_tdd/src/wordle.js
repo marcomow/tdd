@@ -20,3 +20,22 @@ export function nameOfTheFunction(arg1, arg2, arg3) {
   return 42; // value to return from the function
 }
 */
+
+export const evaluateGuess = (answer, guess) => {
+  const alreadyIndicated = [];
+  const guessParts = guess.split("");
+  const responseParts = guessParts.map((letter, index) => {
+    const isExactMatch = letter === answer[index];
+    if (isExactMatch) {
+      alreadyIndicated.push(letter);
+      return "g";
+    };
+    const isAlreadyIndicated = alreadyIndicated.includes(letter);
+    if (isAlreadyIndicated) return "-";
+    const isSomewhereMatch = answer.includes(letter)
+    if (isSomewhereMatch) return "o";
+    return "-";
+  });
+  const response = responseParts.join("");
+  return response;
+}
